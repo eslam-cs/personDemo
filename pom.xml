@@ -60,10 +60,10 @@
 			<artifactId>jackson-jaxrs-json-provider</artifactId>
 		</dependency>
 		<dependency>
-    <groupId>javax.xml.ws</groupId>
-    <artifactId>jaxws-api</artifactId>
-    <version>2.3.1</version>
-</dependency>
+		    <groupId>javax.xml.ws</groupId>
+		    <artifactId>jaxws-api</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-features-logging</artifactId>
@@ -148,6 +148,21 @@
 					</execution>
 				</executions>
 			</plugin>
+	
+		        <plugin>
+		            <groupId>com.spotify</groupId>
+		            <artifactId>dockerfile-maven-plugin</artifactId>
+		            <version>1.3.6</version>
+		            <configuration>
+		                <repository>${docker.image.prefix}/${project.artifactId}</repository>
+						    <buildArgs>
+						        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+						    </buildArgs>
+		            </configuration>
+		        </plugin>
+		    
+		    
+		    
 			
 
 			
