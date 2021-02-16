@@ -1,0 +1,4 @@
+cxf:
+ jaxrs:
+  component-scan: true
+  classes-scan-packages: com.person.personDemo

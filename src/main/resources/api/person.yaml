@@ -1,0 +1,159 @@
+swagger: '2.0'
+info:
+  description: 'person API'
+
+  version: '1.0'
+
+  title: 'person-api'
+  contact:
+    email: 'business.eslam@gmail.com'
+host: 'person'
+basePath: '/services'
+schemes:
+- 'http'
+paths:
+  /person/:
+    post:
+      tags:
+      - 'person'
+      summary: 'Add or update person'
+      description: ''
+      operationId: 'addPerson'
+      consumes:
+      - 'application/json'
+      produces:
+      - 'application/json'
+      parameters:
+      - in: 'body'
+        name: 'person'
+        description: 'person object that needs to be added'
+        required: true
+        schema:
+          $ref: '#/definitions/Person'
+      responses:
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+        400:
+          description: 'Invalid input'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+    get:
+      tags:
+      - 'person'
+      summary: 'get all person'
+      description: 'get all person'
+      operationId: 'getAllPerson'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Successful operation'
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Person'
+        400:
+          description: 'Invalid input'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/PersonResponse'  
+  '/person/{id}':
+    delete:
+      tags:
+      - 'person'
+      summary: 'Delete person'
+      description: ''
+      operationId: 'deletePerson'
+
+      produces:
+      - 'application/json'
+      parameters:
+        - in: path
+          name: id
+          description: person id
+          required: true
+          type: "string"
+          format: "id"
+      responses:
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+        400:
+          description: 'Invalid input'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+    get:
+      tags:
+      - 'person'
+      summary: 'get person'
+      description: 'get person'
+      operationId: 'getPerson'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: path
+          name: id
+          description: person id
+          required: true
+          type: "string"
+          format: "id"
+      responses:
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Person'
+        400:
+          description: 'Invalid input'
+          schema:
+            $ref: '#/definitions/PersonResponse'
+        500:
+          description: 'Internal Server Error'
+          schema:
+            $ref: '#/definitions/PersonResponse'  
+definitions:
+  Person:
+    type: 'object'
+    properties:
+      id:
+        type: 'string'
+        example: '1'
+      firstName:
+        type: 'string'
+        example: 'Eslam'
+      lastName:
+        type: 'string'
+        example: 'Eslam'
+      age:
+        type: 'string'
+        example: '100'
+      favouriteColour:
+        type: 'string'
+        example: 'Black'
+
+  PersonResponse:
+    type: 'object'
+    properties:
+      status:
+        type: 'string'
+        example: 'Succsed'
+      errorCode:
+        type: 'string'
+        example: '150'
+      message:
+        type: 'string'
+        example: 'Succsed'
+  
